@@ -2,8 +2,8 @@ language: java
 sudo: false
 jdk: oraclejdk8
 
-script:
-  - android list sdk --all
+#script:
+#  - android list sdk --all
 
 language: android
 android:
