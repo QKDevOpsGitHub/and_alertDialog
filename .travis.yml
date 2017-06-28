@@ -1,0 +1,44 @@
+language: java
+sudo: false
+jdk: oraclejdk8
+
+script:
+  - android list sdk --all
+
+language: android
+android:
+  components:
+    # Uncomment the lines below if you want to
+    # use the latest revision of Android SDK Tools
+    # - platform-tools
+    # - tools
+
+    # The BuildTools version used by your project
+    - build-tools-26.0.0
+
+    # The SDK version used to compile your project
+    - android-26
+
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - addon-google_apis-google-21
+    
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-armeabi-v7a-android-21
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+#deploy:
+#  provider: testfairy
+#  api-key: "aa2f450c873d306064c9e227872fab23fac448ec"
+#  keystore-file: bin/mykey
+#  storepass: Quark@123
+#  app-file: bin/AlertDialogTest.apk
+#  testers-groups: Bank_Sinarmas	
+#  alias: testAndroid
+  
