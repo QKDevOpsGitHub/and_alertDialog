@@ -41,20 +41,21 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
-#deploy:
-#  provider: releases
-#  api_key:
-#    secure: "f6203544cf8321095292148651a50acf3ed3e143"
-#  file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
-#  on:
-#    repo: QKDevOpsGitHub/and_alertDialog
- 
 deploy:
-   provider: releases
-   user: "QKDevOpsGitHub"
-   password: "Quark$1234"
-   file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
-   skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: "f6203544cf8321095292148651a50acf3ed3e143"
+  file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
+  skip_cleanup: true
+  on:
+    repo: QKDevOpsGitHub/and_alertDialog
+ 
+#deploy:
+#   provider: releases
+#   user: "QKDevOpsGitHub"
+#   password: "Quark$1234"
+#   file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
+#   skip_cleanup: true
 #   on:
 #     tags: false
  
