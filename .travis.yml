@@ -1,11 +1,7 @@
-language: java
+language: android
 sudo: false
 jdk: oraclejdk8
 
-#script:
-#  - android list sdk --all
-
-language: android
 android:
   components:
     # Uncomment the lines below if you want to
@@ -23,11 +19,11 @@ android:
     - extra-google-google_play_services
     - extra-google-m2repository
     - extra-android-m2repository
-    - addon-google_apis-google-21
+    - addon-google_apis-google-25
     
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    - sys-img-armeabi-v7a-android-21
+    - sys-img-armeabi-v7a-android-25
   licenses:
     - 'android-sdk-preview-license-.+'
     - 'android-sdk-license-.+'
