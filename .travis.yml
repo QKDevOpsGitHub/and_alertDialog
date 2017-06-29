@@ -44,7 +44,7 @@ android:
 deploy:
   provider: releases
   api_key:
-    secure: "wy43X9WESaODgKXr..."
+    secure: "f6203544cf8321095292148651a50acf3ed3e143"
   file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
   on:
     repo: QKDevOpsGitHub/and_alertDialog
