@@ -56,7 +56,7 @@ deploy:
    file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
    skip_cleanup: true
    on:
-     tags: true
+     tags: false
  
 #deploy:
 #  provider: testfairy
