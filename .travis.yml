@@ -55,8 +55,8 @@ deploy:
    password: "Quark$1234"
    file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
    skip_cleanup: true
-   on:
-     tags: false
+#   on:
+#     tags: false
  
 #deploy:
 #  provider: testfairy
