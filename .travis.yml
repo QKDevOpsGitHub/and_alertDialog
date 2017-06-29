@@ -21,7 +21,7 @@ android:
     # - tools
 
     # The BuildTools version used by your project
-    - build-tools-25.0.0
+    - build-tools-25.0.2
 
     # The SDK version used to compile your project
     - android-25
@@ -41,11 +41,19 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
+before_deploy:
+    - cp $TRAVIS_BUILD_DIR/.keystore $HOME
+    - cd app/build/outputs/apk/
+    - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/alertDialog_key.jks -storepass "Quark@123" -keypass "Quark@123" app-release-unsigned.apk key0
+    # Verification
+    - jarsigner -verify app-release-unsigned.apk
+    - "${ANDROID_HOME}/build-tools/25.0.2/zipalign -v 4 app-release-unsigned.apk alertDialog.apk"
+    
 deploy:
   provider: releases
   api_key:
     secure: "f6203544cf8321095292148651a50acf3ed3e143"
-  file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
+  file: "alertDialog.apk"
   skip_cleanup: true
   on:
     repo: QKDevOpsGitHub/and_alertDialog
