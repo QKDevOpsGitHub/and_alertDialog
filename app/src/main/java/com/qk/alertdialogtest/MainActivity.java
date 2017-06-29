@@ -12,7 +12,7 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
     private Button mainBtn;
-//testi
+//testing
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
