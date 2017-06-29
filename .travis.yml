@@ -47,7 +47,7 @@ deploy:
     secure: "wy43X9WESaODgKXr..."
   file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
   on:
-    repo: username/Repo
+    repo: QKDevOpsGitHub/and_alertDialog
     
 #deploy:
 #  provider: testfairy
