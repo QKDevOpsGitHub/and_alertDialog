@@ -41,20 +41,20 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
-deploy:
-  provider: releases
-  api_key:
-    secure: "f6203544cf8321095292148651a50acf3ed3e143"
-  file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
-  on:
-    repo: QKDevOpsGitHub/and_alertDialog
-    
 #deploy:
-#  provider: testfairy
-#  api-key: "aa2f450c873d306064c9e227872fab23fac448ec"
-#  keystore-file: bin/mykey
-#  storepass: Quark@123
-#  app-file: bin/AlertDialogTest.apk
-#  testers-groups: Bank_Sinarmas	
-#  alias: testAndroid
+#  provider: releases
+#  api_key:
+#    secure: "f6203544cf8321095292148651a50acf3ed3e143"
+#  file: "app/build/outputs/apk/and_dialogTest_1_0.apk"
+#  on:
+#    repo: QKDevOpsGitHub/and_alertDialog
+    
+deploy:
+  provider: testfairy
+  api-key: "aa2f450c873d306064c9e227872fab23fac448ec"
+  keystore-file: bin/mykey
+  storepass: Quark@123
+  app-file: bin/AlertDialogTest.apk
+  testers-groups: Bank_Sinarmas	
+  alias: testAndroid
   
