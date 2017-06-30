@@ -48,6 +48,8 @@ before_deploy:
     # Verification
     - jarsigner -verify app-release-unsigned.apk
     - "${ANDROID_HOME}/build-tools/25.0.2/zipalign -v 4 app-release-unsigned.apk alertDialog.apk"
+    - pwd
+    - ls
     
 deploy:
   provider: releases
