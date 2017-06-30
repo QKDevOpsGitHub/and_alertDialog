@@ -73,9 +73,7 @@ before_script:
 deploy:
   provider: testfairy
   api-key: "aa2f450c873d306064c9e227872fab23fac448ec"
-  keystore-file: bin/mykey
+  app-file: /app/app-release.apk
+  keystore-file: /root/alertDialog_key.jks
   storepass: Quark@123
-  app-file: bin/AlertDialogTest.apk
-  testers-groups: Bank_Sinarmas	
-  alias: testAndroid
-  
+  alias: key0
