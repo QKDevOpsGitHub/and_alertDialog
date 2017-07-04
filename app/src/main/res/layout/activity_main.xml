@@ -4,18 +4,31 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Main activity of the app..." />
+        android:layout_alignLeft="@+id/button"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:text="Name" android:inputType="text" />
+
+    <EditText
+        android:id="@+id/edittext1"
+        android:layout_below="@+id/edittext"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:text="Job" android:inputType="text" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text"
+        android:layout_below="@+id/edittext1"
         android:layout_marginTop="20dp"
-        android:text="Show Alert Box" />
+        android:text="Register" />
 
 </RelativeLayout>
