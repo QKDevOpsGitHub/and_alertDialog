@@ -1,6 +1,10 @@
 language: android
-sudo: false
+sudo: true
 jdk: oraclejdk8
+
+install:
+  - wget -c http://www-us.apache.org/dist//jmeter/binaries/apache-jmeter-3.2.tgz
+  - tar -xf apache-jmeter-3.2.tgz
 
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
@@ -52,6 +56,9 @@ deploy:
   storepass: Quark@123
   alias: key0
   skip_cleanup: true
+
+after_deploy:
+  - apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
   
 notifications:
     slack: qkdevops:tplgplCVfk0dVVW3lxDMmFM8
