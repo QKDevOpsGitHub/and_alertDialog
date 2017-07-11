@@ -57,8 +57,8 @@ script:
   - adb devices
   - android list targets
   - which java
-  - cd Appium && mvn clean compile assembly:single
-  - java -cp \".:$TRAVIS_BUILD_DIR/lib/selenium-server-standalone-2.53.1.jar\" -jar Executor.jar
+  #- cd Appium && mvn clean compile assembly:single
+  - java -cp \".:selenium-server-standalone-2.53.1.jar\" -jar Executor.jar
   - ls
 
 deploy:
