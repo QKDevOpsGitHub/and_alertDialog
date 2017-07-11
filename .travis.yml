@@ -10,6 +10,10 @@ before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
   - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+  - nvm install 6.9.5
+  - node --version
+  - npm install -g appium
+  - npm install -g appium-doctor
 
 android:
   components:
@@ -47,7 +51,16 @@ before_script:
   - adb shell input keyevent 82 &
   - ls
   - pwd
- 
+
+script:
+  - appium-doctor
+  - adb devices
+  - android list targets
+  - which java
+  - cd Appium && mvn clean compile assembly:single
+  - java -cp \".:$TRAVIS_BUILD_DIR/lib/selenium-server-standalone-2.53.1.jar\" -jar Executor.jar
+  - ls
+
 deploy:
   provider: testfairy
   api-key: "aa2f450c873d306064c9e227872fab23fac448ec"
