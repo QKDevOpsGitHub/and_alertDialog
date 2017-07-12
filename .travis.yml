@@ -58,9 +58,8 @@ script:
   - android list targets
   - which java
   #- cd Appium && mvn clean compile assembly:single
-  - appium --address 127.0.0.1 --port 4723
-   
-after_script:
+  #- appium --address 127.0.0.1 --port 4723
+  - node. 
   - java -jar AlertDialouge.jar
   - ls
 
