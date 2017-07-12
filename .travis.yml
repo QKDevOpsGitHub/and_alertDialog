@@ -58,9 +58,9 @@ script:
   - android list targets
   - which java
   #- cd Appium && mvn clean compile assembly:single
-  - appium --address 127.0.0.1 --port 4723
-  - adb devices
-  - java -jar Executor.jar
+ # - appium --address 127.0.0.1 --port 4723
+  - appium
+  - java -jar AlertDialouge.jar
   - ls
 
 deploy:
