@@ -2,9 +2,9 @@ language: android
 sudo: true
 jdk: oraclejdk8
 
-install:
-  - wget -c http://www-us.apache.org/dist//jmeter/binaries/apache-jmeter-3.2.tgz
-  - tar -xf apache-jmeter-3.2.tgz
+#install:
+ # - wget -c http://www-us.apache.org/dist//jmeter/binaries/apache-jmeter-3.2.tgz
+ # - tar -xf apache-jmeter-3.2.tgz
 
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
