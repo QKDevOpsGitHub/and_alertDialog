@@ -92,104 +92,125 @@ public class MainActivity extends AppCompatActivity {
         // Required initialization
         private String Content;
         private String Error = null;
-        private ProgressDialog Dialog = new ProgressDialog(MainActivity.this);
+        //private ProgressDialog Dialog = new ProgressDialog(MainActivity.this);
+        private AlertDialog alertDialog;
         String data ="";
         int sizeData = 0;
 
         protected void onPreExecute() {
             //Start Progress Dialog (Message)
-            Dialog.setMessage("Please wait..");
-            Dialog.show();
+            //Dialog.setMessage("Please wait..");
+            alertDialog = new AlertDialog.Builder(MainActivity.this).create();
 
-    }
+        }
 
-    // Call after onPreExecute method
-    protected Void doInBackground(String... urls) {
-        BufferedReader reader=null;
-        String USER_AGENT = "Mozilla/5.0";
+        // Call after onPreExecute method
+        protected Void doInBackground(String... urls) {
+            BufferedReader reader=null;
+            String USER_AGENT = "Mozilla/5.0";
 
-        // Send data
-        try {
-            // Defined URL  where to send data
-            URL url = new URL(urls[0]);
+            // Send data
+            try {
+                // Defined URL  where to send data
+                URL url = new URL(urls[0]);
 
-            // Send POST data request
-            HttpsURLConnection  conn = (HttpsURLConnection ) url.openConnection();
-            //conn.setDoOutput(true);
-            conn.setRequestProperty("User-Agent", USER_AGENT);
-            conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-            //conn.setRequestProperty("Content-Type", "application/json");
-            //conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestMethod("POST");
+                // Send POST data request
+                HttpsURLConnection  conn = (HttpsURLConnection ) url.openConnection();
+                conn.setRequestProperty("User-Agent", USER_AGENT);
+                conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+                //conn.setRequestProperty("Content-Type", "application/json");
+                //conn.setRequestProperty("Accept", "application/json");
+                conn.setRequestMethod("POST");
 
-            //JSONObject cred  = new JSONObject();
-            //cred.put("name","Rupesh");
-            //cred.put("job", "BA");
+                String urlParameters = "name=" + urls[1] + "&job=" + urls[2];
 
-            //Toast.makeText(getApplicationContext(), "input data: " + cred.toString(), Toast.LENGTH_LONG).show();
-            String urlParameters = "name=" + urls[1] + "&job=" + urls[2];
+                conn.setDoOutput(true);
+                DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+                wr.writeBytes(urlParameters);
+                wr.flush();
+                wr.close();
 
-            conn.setDoOutput(true);
-            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-            wr.writeBytes(urlParameters);
-            wr.flush();
-            wr.close();
+                // Get the server response
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            int responseCode = conn.getResponseCode();
-            //Toast.makeText(getApplicationContext(), "Response code: " + responseCode, Toast.LENGTH_LONG).show();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
 
-            //int HttpResult = conn.getResponseCode();
-            //Toast.makeText(getApplicationContext(), "Response code: " + HttpResult, Toast.LENGTH_LONG).show();
+                in.close();
 
-            // Get the server response
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+                // Append Server Response To Content String
+                Content = response.toString()+"String Added";
             }
-
-            in.close();
-
-            // Append Server Response To Content String
-            Content = response.toString()+"String Added";
-        }
-        catch(Exception ex)
-        {
-            Error = ex.getMessage();
-        }
-        finally
-        {
-            try
+            catch(Exception ex)
             {
+                Error = ex.getMessage();
+            }
+            finally
+            {
+                try
+                {
 
-                reader.close();
+                    reader.close();
+                }
+
+                catch(Exception ex) {}
             }
 
-            catch(Exception ex) {}
+            /*****************************************************/
+            return null;
         }
 
-        /*****************************************************/
-        return null;
-    }
+        protected void onPostExecute(Void unused) {
+            // NOTE: You can call UI Element here.
 
-    protected void onPostExecute(Void unused) {
-        // NOTE: You can call UI Element here.
+            if (Error != null) {
+                alertDialog.setTitle("Failed");
+                alertDialog.setCanceledOnTouchOutside(false);
+                alertDialog.setMessage("Failed!" + Error);
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+                alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        finish();
+                    }
+                });
 
-        // Close progress dialog
-        Dialog.dismiss();
+                alertDialog.show();
+                //Toast.makeText(getApplicationContext(), "Failed" + Error, Toast.LENGTH_LONG).show();
 
-        if (Error != null) {
-            Toast.makeText(getApplicationContext(), "Failed" + Error, Toast.LENGTH_LONG).show();
+            } else {
+                alertDialog.setTitle("Success");
+                alertDialog.setCanceledOnTouchOutside(false);
+                alertDialog.setMessage("Success!" + Content);
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+                alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        finish();
+                    }
+                });
 
-        } else {
-            Toast.makeText(getApplicationContext(), "success content " + Content, Toast.LENGTH_LONG).show();
+                alertDialog.show();
+
+               // Toast.makeText(getApplicationContext(), "success content " + Content, Toast.LENGTH_LONG).show();
+
+            }
 
         }
-    }
 
-}
+    }
 
 }
