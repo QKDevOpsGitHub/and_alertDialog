@@ -55,7 +55,7 @@ before_script:
 script:
   - appium-doctor
   - adb devices
-  - adb -s emulator-5554 install app/app-release.apk
+  - adb -s emulator-5554 install /app/app-release.apk
   - android list targets
  # - which java
   #- cd Appium && mvn clean compile assembly:single
