@@ -34,7 +34,7 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-25
     
-    # Specify at least one system image,
+    # Specify at least one Lsystem image,
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-25
 
@@ -73,7 +73,7 @@ deploy:
 
 after_deploy:
   #- apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
-  - java -jar AlertDialouge.jar
+  - travis_wait java -jar AlertDialouge.jar
   - java -jar APITester.jar 
   
 #notifications:
