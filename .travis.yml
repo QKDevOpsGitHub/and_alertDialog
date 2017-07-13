@@ -73,7 +73,7 @@ deploy:
 
 after_deploy:
   #- apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
-  - travis_wait java -jar AlertDialouge.jar
+  - travis_wait 30 java -jar AlertDialouge.jar
   - java -jar APITester.jar 
   
 #notifications:
