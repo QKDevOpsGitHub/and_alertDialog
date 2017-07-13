@@ -1,11 +1,19 @@
 language: android
-sudo: false
+sudo: true
 jdk: oraclejdk8
+
+install:
+  - wget -c http://www-us.apache.org/dist//jmeter/binaries/apache-jmeter-3.2.tgz
+  - tar -xf apache-jmeter-3.2.tgz
 
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
   - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+  - nvm install 6.9.5
+  - node --version
+  - npm install -g appium
+  - npm install -g appium-doctor
 
 android:
   components:
@@ -43,7 +51,18 @@ before_script:
   - adb shell input keyevent 82 &
   - ls
   - pwd
- 
+
+script:
+  - appium-doctor
+  - adb devices
+  - adb -s emulator-5554 install app/app-release.apk
+  - android list targets
+ # - which java
+  #- cd Appium && mvn clean compile assembly:single
+  #- appium --address 127.0.0.1 --port 4723
+  - travis_wait 20 java -jar AlertDialouge.jar
+  - ls
+
 deploy:
   provider: testfairy
   api-key: "aa2f450c873d306064c9e227872fab23fac448ec"
@@ -52,6 +71,10 @@ deploy:
   storepass: Quark@123
   alias: key0
   skip_cleanup: true
+
+after_deploy:
+  #- apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
+  - java -jar APITester.jar 
   
-notifications:
-    slack: qkdevops:tplgplCVfk0dVVW3lxDMmFM8
+#notifications:
+    #slack: qkdevops:tplgplCVfk0dVVW3lxDMmFM8
