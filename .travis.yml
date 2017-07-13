@@ -60,7 +60,6 @@ script:
  # - which java
   #- cd Appium && mvn clean compile assembly:single
   #- appium --address 127.0.0.1 --port 4723
-  - travis_wait 20 java -jar AlertDialouge.jar
   - ls
 
 deploy:
@@ -74,6 +73,7 @@ deploy:
 
 after_deploy:
   #- apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
+  - java -jar AlertDialouge.jar
   - java -jar APITester.jar 
   
 #notifications:
