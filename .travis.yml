@@ -70,6 +70,7 @@ deploy:
   storepass: Quark@123
   alias: key0
   skip_cleanup: true
+  testers-groups: Bank_Sinarmas
 
 after_deploy:
   #- apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
