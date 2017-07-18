@@ -73,8 +73,8 @@ deploy:
 
 after_deploy:
   #- apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
-  - travis_wait 40 java -jar AlertDialouge.jar
+  #- travis_wait 40 java -jar AlertDialouge.jar
   - java -jar APITester.jar 
   
-#notifications:
-    #slack: qkdevops:tplgplCVfk0dVVW3lxDMmFM8
+notifications:
+    slack: qkdevops:tplgplCVfk0dVVW3lxDMmFM8
