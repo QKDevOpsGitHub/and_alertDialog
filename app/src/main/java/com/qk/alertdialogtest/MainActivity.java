@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
             //Start Progress Dialog (Message)
             //Dialog.setMessage("Please wait..");
             alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-
         }
 
         // Call after onPreExecute method
