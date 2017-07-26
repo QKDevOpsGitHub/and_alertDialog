@@ -34,7 +34,7 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-25
     
-    # Specify at least one system image,
+    # Specify at least one Lsystem image,
     # if you need to run emulator(s) during your tests
     - sys-img-armeabi-v7a-android-25
 
@@ -60,7 +60,6 @@ script:
  # - which java
   #- cd Appium && mvn clean compile assembly:single
   #- appium --address 127.0.0.1 --port 4723
-  - travis_wait 20 java -jar AlertDialouge.jar
   - ls
 
 deploy:
@@ -71,10 +70,12 @@ deploy:
   storepass: Quark@123
   alias: key0
   skip_cleanup: true
+  testers-groups: Bank_Sinarmas
 
 after_deploy:
   #- apache-jmeter-3.2/bin/./jmeter -n -t users.jmx
-  - java -jar APITester.jar 
-  
-#notifications:
-    #slack: qkdevops:tplgplCVfk0dVVW3lxDMmFM8
+  #- travis_wait 40 java -jar AlertDialouge.jar
+  - java -jar APITester.jar
+
+notifications:
+    slack: qkdevops:tplgplCVfk0dVVW3lxDMmFM8

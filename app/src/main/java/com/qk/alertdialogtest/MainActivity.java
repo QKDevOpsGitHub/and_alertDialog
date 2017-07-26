@@ -24,7 +24,6 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
-
 public class MainActivity extends AppCompatActivity {
     private Button mainBtn;
     private EditText nameText;
@@ -115,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 URL url = new URL(urls[0]);
 
                 // Send POST data request
-                HttpsURLConnection  conn = (HttpsURLConnection ) url.openConnection();
+                HttpsURLConnection conn = (HttpsURLConnection ) url.openConnection();
+                TrustModifier.relaxHostChecking(conn);
                 conn.setRequestProperty("User-Agent", USER_AGENT);
                 conn.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
                 //conn.setRequestProperty("Content-Type", "application/json");
